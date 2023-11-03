@@ -1,4 +1,13 @@
-bool checkTriplet(int arr[], int n) 
+// Pythagorean Triplet
+// November 3, 2023
+// C++ Code
+
+
+class Solution{
+public:
+	// Function to check if the
+	// Pythagorean triplet exists or not
+	bool checkTriplet(int arr[], int n) 
 	{
 	    
 	    int max = INT_MIN;
@@ -24,3 +33,4 @@ bool checkTriplet(int arr[], int n)
 	    
 	    return false;
 	}
+};
