@@ -2,7 +2,7 @@
 
 This repository contains solutions to the daily problem quotes on GeeksforGeeks, a popular Indian computer science portal. The problems are typically coding challenges in various programming languages, such as C++, Java, Python, and JavaScript.
 
-Giving my ideated code to solve Day-To-Day problems on GeeksforGeeks Platform and to practice for solving coded problems of the day
+Giving my ideated code to solve Day-To-Day problems on GeeksforGeeks Platform and to practice for solving coded problems of the day. Solving daily porblem for GeeksForGeeks to learn and help.
 
 #GFGPOTD #GFG #POTD
 
