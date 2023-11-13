@@ -1,0 +1,33 @@
+// Check if string is rotated by two places
+// November 1, 2023
+// C++ Code
+
+
+class Solution
+{
+    public:
+    //Function to check if a string can be obtained by rotating
+    //another string by exactly 2 places.
+    bool isRotated(string str1, string str2)
+    {
+        // Your code here
+        int n=str1.size();
+        bool flag1=true;
+        //clockwise check
+        for(int i=0;i<n;i++)
+        {
+            if(str2[i]!=str1[((n-2+i)%n)])
+            flag1=false;
+        }
+        //anticlockwise
+        bool flag2=true;
+        for(int i=0;i<n;i++)
+        {
+            if(str2[i]!=str1[((2+i)%n)])
+            flag2=false;
+        }
+        if(flag1==true || flag2==true)    return true;
+        else return false;
+    }
+
+};
