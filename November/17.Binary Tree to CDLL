@@ -1,0 +1,29 @@
+// Binary Tree to CDLL
+// November 17, 2023
+// C++ Code
+
+class Solution
+{
+  public:
+    //Function to convert binary tree into circular doubly linked list.
+    Node *bTreeToCList(Node *root)
+    {
+        if (!root) return root;
+        Node* left = bTreeToCList(root -> left);
+        Node* right = bTreeToCList(root -> right);
+        root -> left = root -> right = root;
+        return merge(merge(left, root), right);
+    }
+    
+    Node* merge(Node* a, Node* b) {
+        if (!a) return b;
+        if (!b) return a;
+        Node* aTail = a -> left;
+        Node* bTail = b -> left;
+        aTail -> right = b;
+        b -> left = aTail;
+        a -> left = bTail;
+        bTail -> right = a;
+        return a;
+    }
+};
