@@ -1,0 +1,49 @@
+// Reverse a Doubly Linked List
+// November 18, 2023
+// C++ Code
+
+class Solution
+
+{
+
+    public:
+
+    Node* reverseDLL(Node * head)
+
+    {
+
+        
+
+        if(head==NULL || head->next==NULL ){
+
+            return head;
+
+        }
+
+        Node* previ=NULL;
+
+        Node* curr=head;
+
+        Node* forw=NULL;
+
+        while(curr!=NULL){
+
+            forw=curr->next;
+
+            curr->next=previ;
+
+            curr->prev=forw;
+
+            previ=curr;
+
+            curr=forw;
+
+        }
+
+        return previ;
+
+      
+
+    }
+
+};
