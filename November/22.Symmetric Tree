@@ -1,0 +1,25 @@
+// Symmetric Tree
+// November 14, 2023
+// C++ Code
+
+
+class GfG
+
+{
+   static int flag=0;
+    public static boolean isSymmetric(Node root)
+    {   flag=0;
+        recurse(root,root);
+       return (flag==1)?false:true;
+    }
+   static void recurse(Node root,Node root1){
+        if(root!=null && root1!=null){
+            if(root.data!=root1.data) flag=1;
+            recurse(root.left,root1.right);
+            recurse(root.right,root1.left);
+        }
+        else if(root==null && root1==null);
+        else flag=1;
+    }
+}
+
