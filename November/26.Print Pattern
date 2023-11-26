@@ -1,0 +1,25 @@
+// Print Pattern
+// November 26, 2023
+// C++ Code
+
+class Solution{
+public:
+    
+    void push_to_vec(vector<int> &res,int N){
+        if(N<=0){
+            res.push_back(N);
+            return;
+        }
+        res.push_back(N);      //pushes for first time while decreasing
+        push_to_vec(res,N-5); //call for next number to push
+        res.push_back(N);    //pushes for second time while increasing
+        return;
+    }
+    
+    vector<int> pattern(int N){
+        // code here
+        vector<int> res;              //declaration
+        push_to_vec(res,N);        //funtion call
+        return res;
+    }
+};
