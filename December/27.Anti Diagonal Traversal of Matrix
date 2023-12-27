@@ -1,0 +1,28 @@
+
+// Anti Diagonal Traversal of Matrix
+// December 27, 2023
+// C++ Code
+
+class Solution {
+  public:
+    vector<int> antiDiagonalPattern(vector<vector<int>> matrix) 
+    {
+        // Code here
+        int n=matrix.size();
+        int m=matrix[0].size();
+        vector<vector<int>> ans(n+m-1);
+        // negdiag[n-1+r-c]
+        for(int r=0;r<n;r++){
+            for(int c=0;c<n;c++){
+                ans[r+c].push_back(matrix[r][c]);
+            }
+        }
+        vector<int> res;
+        for(auto x:ans){
+            for(auto y:x){
+                res.push_back(y);
+            }
+        }
+        return res;
+    }
+};
