@@ -1,0 +1,23 @@
+
+// New Year Resolution
+// December 31, 2023
+// C++ Code
+
+class Solution {
+    
+    public:
+    bool solve(int N, int coins[], int index, int sum) {
+        if(sum !=0 && (sum%24==0 || sum%20 == 0 || sum%2024 == 0)) {
+            return true;
+        }
+        if(index==N) {
+            return false;
+        }
+        
+       return solve(N, coins, index+1, sum+coins[index]) || solve(N, coins, index+1, sum);
+    }
+    int isPossible(int N , int coins[]) 
+    {
+        return solve(N, coins,0,0);
+    }
+};
