@@ -2,19 +2,35 @@
 // January 15, 2024
 // C++ Code
 
-class Solution{
-    public:
-   int max_courses(int n, int t, vector<int> &cost)
-    {
-        //Code Here
-        int cnt =0;
-        int p = t;
-        for(int i =0; i<n; i++){
-            if(p>= cost[i]){
-                p -= ceil(0.1*cost[i]);
-                cnt++;
-            }
+class Solution {
+public:
+    int dp[1001][1001];
+    int solve(int i, int n, int total, vector<int> &cost) {
+        if (i >= n) {
+            return 0;
         }
-        return cnt;
+       
+        if(total<0){
+            return 0;
+        }
+        
+        if(dp[i][total]!=-1){
+            return dp[i][total];
+        }
+        
+        int taken = 0;
+        int nottaken = 0;
+        if (total >= cost[i]){
+             int val = cost[i] - floor(cost[i]*.9);
+             taken = 1+solve(i + 1, n, total - val, cost);
+        }
+        nottaken = solve(i + 1, n, total, cost);
+       
+        return dp[i][total] =   max(nottaken,taken);
+    }
+
+    int max_courses(int n, int total, vector<int> &cost) {
+        memset(dp,-1,sizeof(dp));
+        return solve(0, n, total, cost);
     }
 };
