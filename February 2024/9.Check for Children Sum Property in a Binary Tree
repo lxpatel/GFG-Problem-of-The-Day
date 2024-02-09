@@ -1,0 +1,17 @@
+
+// Check for Children Sum Property in a Binary Tree
+// February 9, 2024
+// C++ Code
+
+class Solution{
+    public:
+    int isSumProperty(Node *n) {
+        if(!n or (!n->left and !n->right)) return 1;
+        
+        int l = n->left ? n->left->data : 0, r = n->right ? n->right->data : 0;
+        
+        if(n->data != l + r) return 0;
+        
+        return isSumProperty(n->left) and isSumProperty(n->right);
+}
+};
