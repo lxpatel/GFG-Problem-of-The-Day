@@ -1,0 +1,24 @@
+
+// Flatten BST to sorted list
+// February 16, 2024
+// C++ Code
+
+class Solution
+{
+public:
+    Node *flattenBST(Node *root)
+    {
+        // code here
+        return bst(root);
+    }
+private:
+    Node* bst(Node* root){
+        if(root == NULL){
+            return NULL;
+        }
+        
+        bst(root->left);
+        cout << root->data << " ";
+        bst(root->right);
+    }
+};
