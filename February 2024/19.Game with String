@@ -1,0 +1,40 @@
+
+// Game with String
+// February 19, 2024
+// C++ Code
+
+class Solution{
+public:
+    int minValue(string s, int k){
+        // code here
+        unordered_map<char, int>mp;
+        for(auto ch: s){
+            mp[ch]++;
+        }
+        long long sum = 0;
+        priority_queue<pair<int,char>>pq;
+        for(auto it: mp){ 
+            // cout<<it.first<<" "<<it.second<<endl;
+            pq.push({it.second, it.first});
+        }
+        while(k != 0 && !pq.empty()){
+           int freq = pq.top().first;
+           char ch = pq.top().second;
+        //   cout<<ch<<" "<<freq<<endl;
+           pq.pop();
+           freq--;
+           if(freq > 0){
+               pq.push({freq, ch});
+           }
+           k--;
+        }
+        while(!pq.empty()){
+           int freq = pq.top().first;
+            // cout<<freq<<endl;
+           pq.pop();
+           sum += freq*freq;
+        }
+        return sum;
+    }
+};
+
