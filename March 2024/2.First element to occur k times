@@ -1,0 +1,20 @@
+
+// First element to occur k times
+// March 2, 2024
+// C++ Code
+
+class Solution{
+    public:
+    int firstElementKTime(int n, int k, int a[])
+    {
+        map<int,int>hk;
+        int h = 0;
+        while(h < n)
+        {
+            hk[a[h]]++;
+            if(hk [a[h]] == k) return a[h] ; 
+            h++ ;
+        }
+        return -1;
+    }
+};
