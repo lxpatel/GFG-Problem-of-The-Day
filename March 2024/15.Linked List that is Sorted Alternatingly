@@ -1,0 +1,66 @@
+
+// Linked List that is Sorted Alternatingly
+// March 15, 2024
+// C++ Code
+
+class Solution
+{
+    public:
+  
+    Node *mergelist(Node *&Ahead,Node *&Dhead){
+        if(!Ahead) return Dhead;
+        if(!Dhead) return Ahead;
+        Node *temp;
+        if(Ahead->data<Dhead->data){
+            temp=Ahead;
+            temp->next=mergelist(Ahead->next,Dhead);
+        }
+        else {
+            temp=Dhead;
+            temp->next=mergelist(Ahead,Dhead->next);
+        }
+        return temp;
+    }
+    void reverse(Node *&Dhead){
+        Node *curr=Dhead;
+        Node *next=NULL,*prev=NULL;
+        while(curr){
+        next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+        
+        }
+        Dhead=prev;
+    }
+    void sort(Node **head)
+    {
+         // Code here
+        
+         Node *asn=new Node(0);
+         Node *Ahead=asn;
+         Node *dsn=new Node(0);
+         Node *Dhead=dsn;
+         Node *curr=*head;
+         while(curr){
+             asn->next=curr;
+             curr=curr->next;
+             asn=asn->next;
+             if(curr){
+                 dsn->next=curr;
+                 curr=curr->next;
+                 dsn=dsn->next;
+             }
+             
+         }
+         
+         asn->next=NULL;
+         dsn->next=NULL;
+         
+         Ahead=Ahead->next;
+         Dhead=Dhead->next;
+         reverse(Dhead);
+        *head= mergelist(Ahead,Dhead);
+         
+    }
+};
