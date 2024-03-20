@@ -1,0 +1,66 @@
+
+// Sum of nodes on the longest path from root to leaf node
+// March 20, 2024
+// C++ Code
+
+class Solution
+
+{
+
+public:
+
+    void rootSum(Node* root, int sum, int len, int& maxLen, int& maxSum)
+
+    {
+
+        if (!root) 
+
+        {
+
+            if (maxLen < len) {
+
+               maxLen = len;
+
+               maxSum = sum;
+
+            }
+
+            else if (maxLen == len && maxSum < sum)
+
+            maxSum = sum;
+
+            
+
+            return;
+
+        }
+
+        rootSum(root->left, sum + root->data, len + 1, maxLen, maxSum);
+
+ 
+
+        rootSum(root->right, sum + root->data, len + 1, maxLen, maxSum);
+
+    }
+
+ 
+
+    int sumOfLongRootToLeafPath(Node* root)
+
+    {
+
+        if (!root)
+
+           return 0;
+
+        int maxSum = INT_MIN, maxLen = 0;
+
+        rootSum(root, 0, 0, maxLen, maxSum);
+
+ 
+
+        return maxSum;
+
+    }
+
+};
