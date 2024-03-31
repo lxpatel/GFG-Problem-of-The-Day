@@ -1,0 +1,29 @@
+
+// Closest Neighbour in BST
+// March 31, 2024
+// C++ Code
+
+class Solution {
+  public:
+    void seq(Node* root, vector<int>& dp) {
+        if (root == nullptr) {
+            return;
+        }
+        dp.push_back(root->key);
+        seq(root->left, dp);
+        seq(root->right, dp);
+    }
+    int findMaxForN(Node* root, int n) {
+        if(!root) return -1;
+        vector<int>dp;
+        seq(root,dp);
+        sort(dp.begin(),dp.end());
+        int size=dp.size();
+        for(int i=0;i<size;i++){
+            if(dp[i]<=n&&dp[i+1]>n)
+            return dp[i];
+            if(i==size-1&&dp[i]<=n) return dp[i];
+        }
+        return -1;
+    }
+};
