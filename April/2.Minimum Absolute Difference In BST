@@ -1,0 +1,27 @@
+
+// Minimum Absolute Difference In BST
+// April 2, 2024
+// C++ Code
+
+class Solution
+{   int diff=INT_MAX;
+    Node* prev=NULL;
+    void in(Node* root)
+    {
+        if(root)
+        {
+            in(root->left);
+            if(prev)
+            diff=min(diff,abs(root->data-prev->data));
+            prev=root;
+            in(root->right);
+        }
+    }
+    public:
+    int absolute_diff(Node *root)
+    {
+        //Your code here
+        in(root);
+        return diff;
+    }
+};
