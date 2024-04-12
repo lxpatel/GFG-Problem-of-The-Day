@@ -1,0 +1,26 @@
+
+// Sum of Products
+// April 12, 2024
+// C++ Code
+
+class Solution {
+  public:
+    long long pairAndSum(int n, long long arr[]) {
+        // code here
+        long long ans =0 ;
+        for(long long i=0;i<32;i++){
+            long long k = 0;
+            for(long long j=0;j<n;j++){
+                if(arr[j] & (1<<i)){ //checking set bit
+                    k++; //incrementing
+                }
+            }
+            
+            ans += (1<<i)*(((k)*(k-1))/2); 
+            // 2^i * Number of pairs in which ith bit is set that is counted by k
+            // pairs formed by kC2
+        }
+        return ans;
+        
+    }
+};
