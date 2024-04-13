@@ -1,0 +1,20 @@
+
+// Reverse Bits
+// April 13, 2024
+// C++ Code
+
+class Solution {
+  public:
+    long long reversedBits(long long x) {
+        int i =0;
+        long long ans =0;
+        while(x!=0){
+            if(x%2!=0){
+                ans+=pow(2,31-i);
+            }
+            i++;
+            x/=2;
+        }
+        return  ans;
+    }
+};
