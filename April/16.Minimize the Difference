@@ -1,0 +1,51 @@
+
+// Minimize the Difference
+// April 16, 2024
+// C++ Code
+
+class Solution {
+  public:
+    int minimizeDifference(int n, int k, vector<int> &arr) {
+        int miniLeft = INT_MAX;
+        int maxiLeft = INT_MIN;
+        deque<int>maxiRight;
+        deque<int>miniRight;
+        for(int i=k;i<n;i++){
+            if(maxiRight.empty()){
+                maxiRight.push_back(i);
+                miniRight.push_back(i);
+            }
+            else{
+                while(!maxiRight.empty() and arr[maxiRight.back()]<=arr[i]){
+                    maxiRight.pop_back();
+                }
+                maxiRight.push_back(i);
+                
+                while(!miniRight.empty() and arr[miniRight.back()]>=arr[i]){
+                    miniRight.pop_back();
+                }
+                miniRight.push_back(i);
+            }
+        }
+        int diff = INT_MAX;
+        for(int i=0;i<=n-k;i++){
+            int mini = min(miniLeft,arr[miniRight.front()]);
+            int maxi = max(maxiLeft,arr[maxiRight.front()]);
+            diff = min(diff,maxi-mini);
+            miniLeft = min(miniLeft,arr[i]);
+            maxiLeft = max(maxiLeft,arr[i]);
+            // i-->i+k-1
+            if(maxiRight.front()==i+k){
+                maxiRight.pop_front();
+            }
+            if(miniRight.front()==i+k){
+                miniRight.pop_front();
+            }
+            if(maxiRight.empty()){
+                diff = min(diff,maxiLeft-miniLeft);
+                break;
+            }
+        }
+        return diff;
+    }
+};
