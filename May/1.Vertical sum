@@ -1,0 +1,25 @@
+
+// Vertical sum
+// May 5, 2024
+// C++ Code
+
+
+class Solution{
+  public:
+    void solve(Node* root, int l,  map<int, int>& mp){
+        if(root == NULL)
+            return;
+        mp[l] += root->data;
+        solve(root->left, l-1, mp);
+        solve(root->right, l+1, mp);
+    }
+    vector <int> verticalSum(Node *root) {
+        map<int, int> mp;
+        vector<int> ans;
+        solve(root, 0, mp);
+        for(auto i: mp){
+            ans.push_back(i.second);
+        }
+        return ans;
+    }
+};
