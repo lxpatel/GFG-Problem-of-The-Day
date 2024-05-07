@@ -1,0 +1,44 @@
+
+// Reverse Level Order Traversal
+// May 7, 2024
+// C++ Code
+
+vector<int> reverseLevelOrder(Node *root)
+{
+    // code here
+     
+    Node* curr=root;
+    vector<int> v;
+    vector<int> ans;
+    queue<Node*> q;
+    
+    q.push(curr);
+    q.push(nullptr);
+    
+    while(!q.empty()){
+        Node* frontNode = q.front();
+        q.pop();
+        
+        if(frontNode==NULL){
+        reverse(v.begin(),v.end());
+         for(auto i :v ){
+              ans.push_back(i);
+         }
+         v.clear();
+         if(q.front()!=NULL)
+         q.push(nullptr);
+        }
+        else{
+            v.push_back(frontNode->data);
+            if(frontNode->left){
+                q.push(frontNode->left);
+            }
+            if(frontNode->right){
+                q.push(frontNode->right);
+            }
+        }
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+    
+}
